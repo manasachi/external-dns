@@ -16,7 +16,15 @@ jobs:
           ref: main
 
       - name: Trigger External Workflow
-        uses: passeidireto/trigger-external-workflow-action@main
+        run: |
+          echo "repository_dispatch:" > trigger-payload.yml
+          echo "  types: [\"trigger-workflow\"]" >> trigger-payload.yml
+          echo "  ref: main" >> trigger-payload.yml
+          echo "  workflow: .github/workflows/e2ev2-provision-test.yaml" >> trigger-payload.yml
+        shell: bash
+
+      - name: Dispatch Repository Workflow
+        uses: peter-evans/repository-dispatch@v2
         with:
-          workflow: .github/workflows/e2ev2-provision-test.yaml
           token: ${{ secrets.GITHUB_TOKEN }}
+          payload-file: trigger-payload.yml
