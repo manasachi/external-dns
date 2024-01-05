@@ -1,15 +1,22 @@
+name: Trigger External Workflow
 
-on: [push, workflow_dispatch]
+on:
+  push:
+    branches:
+      - main
+
 jobs:
-  trigger:
+  trigger_external_workflow:
     runs-on: ubuntu-latest
-    name: "Trigger external dns e2e tests for azure provider"
     steps:
-    - uses: passeidireto/trigger-external-workflow-action@main
-      env:
-        PAYLOAD_AUTHOR: ${{ github.author }}
-        PAYLOAD_REVISION: "3"
-      with:
-        repository: manasachi/azure-provider-external-dns-e2e
-        event: doc_update
-        github_pat: ${{ secrets.pat_with_access }}
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+        with:
+          repository: manasachi/azure-provider-external-dns-e2e
+          ref: main
+
+      - name: Trigger External Workflow
+        uses: passeidireto/trigger-external-workflow-action@main
+        with:
+          workflow: .github/workflows/e2ev2-provision-test.yaml
+          token: ${{ secrets.GITHUB_TOKEN }}
