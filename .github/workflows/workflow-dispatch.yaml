@@ -1,30 +1,14 @@
-name: Trigger External Workflow
-
-on:
-  pull_request:
-    branches:
-      - '*'
-
+on: [push, workflow_dispatch]
 jobs:
-  trigger_external_workflow:
+  trigger:
     runs-on: ubuntu-latest
+    name: "📦 Trigger Project Test"
     steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v2
-        with:
-          repository: manasachi/azure-provider-external-dns-e2e
-          ref: main
-
-      - name: Trigger External Workflow
-        run: |
-          echo "repository_dispatch:" > trigger-payload.yml
-          echo "  types: [\"trigger-workflow\"]" >> trigger-payload.yml
-          echo "  ref: main" >> trigger-payload.yml
-          echo "  workflow: .github/workflows/e2ev2-provision-test.yaml" >> trigger-payload.yml
-        shell: bash
-
-      - name: Dispatch Repository Workflow
-        uses: peter-evans/repository-dispatch@v2
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          payload-file: trigger-payload.yml
+    - uses: passeidireto/trigger-external-workflow-action@main
+      env:
+        PAYLOAD_AUTHOR: ${{ github.author }}
+        PAYLOAD_REVISION: "3"
+      with:
+        repository: manasachi/azure-provider-external-dns-e2e
+        ref: main
+        github_pat: ${{ secrets.pat_with_access }}
