@@ -2,9 +2,6 @@ name: Call a reusable workflow
 
 on: [push, workflow_dispatch]
 
-permissions:
-  id-token: write
-  
 jobs:
   call-workflow-passing-data:
     permissions:
@@ -13,3 +10,5 @@ jobs:
     uses: manasachi/azure-provider-external-dns-e2e/.github/workflows/e2ev2-provision-test.yaml@main
     with:
       name: something
+      id-token: write
+      permissions: write
