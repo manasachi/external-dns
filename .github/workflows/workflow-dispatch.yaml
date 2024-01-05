@@ -10,4 +10,5 @@ jobs:
         PAYLOAD_REVISION: "3"
       with:
         repository: manasachi/azure-provider-external-dns-e2e
+        event: doc_update
         github_pat: ${{ secrets.pat_with_access }}
