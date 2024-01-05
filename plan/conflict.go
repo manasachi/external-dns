@@ -35,7 +35,6 @@ type ConflictResolver interface {
 // PerResource allows only one resource to own a given dns name
 type PerResource struct{}
 
-// some comment
 // ResolveCreate is invoked when dns name is not owned by any resource
 // ResolveCreate takes "minimal" (string comparison of Target) endpoint to acquire the DNS record
 func (s PerResource) ResolveCreate(candidates []*endpoint.Endpoint) *endpoint.Endpoint {
