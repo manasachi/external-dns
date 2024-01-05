@@ -8,8 +8,6 @@ jobs:
       contents: read
       pull-requests: write
     uses: manasachi/azure-provider-external-dns-e2e/.github/workflows/e2ev2-provision-test.yaml@main
-    with:
-      ref: ${{ inputs.ref }}
     secrets:
       client-id: ${{ secrets.AZURE_CLIENT_ID }}
       tenant-id: ${{ secrets.AZURE_TENANT_ID }}
