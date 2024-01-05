@@ -1,14 +1,10 @@
-on: [push, workflow_dispatch]
+name: Call a reusable workflow
+
+on:
+  pull_request:
+    branches:
+      - main
+
 jobs:
-  trigger:
-    runs-on: ubuntu-latest
-    name: "📦 Trigger Project Test"
-    steps:
-    - uses: passeidireto/trigger-external-workflow-action@main
-      env:
-        PAYLOAD_AUTHOR: ${{ github.author }}
-        PAYLOAD_REVISION: "3"
-      with:
-        repository: manasachi/azure-provider-external-dns-e2e
-        event: doc_update
-        github_pat: ${{ secrets.pat_with_access }}
+  call-workflow:
+    uses: manasachi/azure-provider-external-dns-e2e/.github/workflows/e2ev2-provision-test.yaml
