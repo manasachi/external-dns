@@ -1,9 +1,9 @@
 name: Trigger External Workflow
 
 on:
-  push:
+  pull_request:
     branches:
-      - main
+      - '*'
 
 jobs:
   trigger_external_workflow:
