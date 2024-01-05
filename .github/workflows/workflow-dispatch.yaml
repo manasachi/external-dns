@@ -10,6 +10,6 @@ jobs:
     uses: manasachi/azure-provider-external-dns-e2e/.github/workflows/e2ev2-provision-test.yaml@main
     with:
       name: something
-      id-token: ${{ secrets.GITHUB_TOKEN }}
+      id-token: value
       permissions: write
     secrets: inherit
