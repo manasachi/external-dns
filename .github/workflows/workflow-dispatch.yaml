@@ -5,11 +5,9 @@ on: [push, workflow_dispatch]
 jobs:
   call-workflow-passing-data:
     permissions:
-      contents: read
+      contents: write
       pull-requests: write
     uses: manasachi/azure-provider-external-dns-e2e/.github/workflows/e2ev2-provision-test.yaml@main
     with:
       name: something
-      id-token: value
-      permissions: write
     secrets: inherit
