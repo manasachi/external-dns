@@ -10,7 +10,3 @@ jobs:
     uses: manasachi/azure-provider-external-dns-e2e/.github/workflows/e2ev2-provision-test.yaml@main
     with:
       name: something
-    secrets:
-      client-id: ${{ secrets.AZURE_CLIENT_ID }}
-      tenant-id: ${{ secrets.AZURE_TENANT_ID }}
-      subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
