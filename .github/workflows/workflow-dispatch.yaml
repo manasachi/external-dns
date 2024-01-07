@@ -10,5 +10,5 @@ jobs:
       pull-requests: write
     uses: manasachi/azure-provider-external-dns-e2e/.github/workflows/e2ev2-provision-test.yaml@main
     with:
-      name: something
+      name: testinge2e
     secrets: inherit
