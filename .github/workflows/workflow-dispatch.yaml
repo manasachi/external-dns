@@ -3,6 +3,12 @@ name: Call a reusable workflow
 on: [push, workflow_dispatch]
 
 jobs:
+  call-e2ev2-matrix:
+    permissions:
+      contents: read
+      pull-requests: write
+    uses: manasachi/azure-provider-external-dns-e2e/.github/workflows/e2ev2-matrix.yaml@main
+    secrets: inherit
   call-workflow-passing-data:
     permissions:
       id-token: write
