@@ -5,6 +5,7 @@ on: [push, workflow_dispatch]
 jobs:
   call-e2ev2-matrix:
     permissions:
+      id-token: write
       contents: read
       pull-requests: write
     uses: manasachi/azure-provider-external-dns-e2e/.github/workflows/e2ev2-matrix.yaml@main
