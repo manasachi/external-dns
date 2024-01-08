@@ -33,6 +33,7 @@ import (
 	"sigs.k8s.io/external-dns/provider"
 )
 
+// random comment
 const (
 	azureRecordTTL = 300
 )
